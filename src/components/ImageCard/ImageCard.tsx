@@ -1,7 +1,15 @@
-import PropTypes from "prop-types";
+
 import css from "./ImageCard.module.css";
 
-const ImageCard = ({ imageSmall, description, onClick }) => {
+
+
+interface ImageCardProp{
+  imageSmall: string;
+  description: string;
+  onClick:  (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+
+const ImageCard:React.FC<ImageCardProp> = ({ imageSmall, description, onClick }) => {
   return (
     <div className={css.wrapper} onClick={onClick}>
       <img
@@ -15,10 +23,6 @@ const ImageCard = ({ imageSmall, description, onClick }) => {
   );
 };
 
-ImageCard.propTypes = {
-  imageSmall: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
-};
+
 
 export default ImageCard;

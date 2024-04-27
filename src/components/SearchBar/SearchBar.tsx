@@ -1,11 +1,18 @@
 import toast, { Toaster } from "react-hot-toast";
-import PropTypes from "prop-types";
+import { FC , FormEvent} from "react";
+
 import css from "./SearchBar.module.css";
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (e) => {
+interface SearchBarProps {
+  onSubmit: (word: string) => void;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>):void => {
     e.preventDefault();
-    const newWord = e.currentTarget.elements.searchWord.value.trim();
+    const newWordElement = e.currentTarget.querySelector<HTMLInputElement>('input[name="searchWord"]');
+    const newWord: string = newWordElement ? newWordElement.value.trim() : '';
+
     if (newWord !== "") {
       onSubmit(newWord);
       e.currentTarget.reset();
@@ -36,8 +43,6 @@ const SearchBar = ({ onSubmit }) => {
   );
 };
 
-SearchBar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+
 
 export default SearchBar;

@@ -1,6 +1,16 @@
 import ReactModal from "react-modal";
-import PropTypes from "prop-types";
 import css from "./ImageModal.module.css";
+
+interface ImageModalProp{
+  data: {
+    name: string,
+    image: string,
+    description: string,
+  };
+  isOpen: boolean;
+  onRequestClose: () => void;
+
+}
 
 const customStyles = {
   overlay: {
@@ -20,7 +30,7 @@ const customStyles = {
     borderRadius: "8px",
   },
 };
-const ImageModal = ({ data, isOpen, onRequestClose }) => {
+const ImageModal: React.FC<ImageModalProp> = ({ data, isOpen, onRequestClose }) => {
   if (!data) {
     return <div>No data available</div>;
   }
@@ -45,14 +55,6 @@ const ImageModal = ({ data, isOpen, onRequestClose }) => {
   );
 };
 
-ImageModal.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-  }),
-  isOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
-};
+
 
 export default ImageModal;

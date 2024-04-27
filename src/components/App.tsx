@@ -26,7 +26,7 @@ interface ModalData {
   description: string;
 }
 
-function App():FC {
+function App() {
   const [images, setImages] = useState<ImageData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any | null>(null);
@@ -113,7 +113,7 @@ function App():FC {
         <ImageGallery images={images} onClick={handleOpenModal} />
       )}
       {totalPage > page && <LoadMoreBtn onClick={handleAddImage} />}
-      {error && <ErrorMessage message={error.message} />}
+      {error && <ErrorMessage  />}
       <ImageModal
         data={memoizedModalData}
         isOpen={isModalOpen}
